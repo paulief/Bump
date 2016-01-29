@@ -20,7 +20,6 @@ db.createTable = function(queryString) {
 	// TODO: get actual error messages
 	pg.connect(connString, function(err, client, done) {
 		if (err) {
-			console.log(err);
 			deferred.reject({
 				error: 'Connection Error',
 				message: 'Could not connect to DB'
@@ -28,13 +27,11 @@ db.createTable = function(queryString) {
 		} else {
 			client.query(queryString, function(err) {
 				if (err) {
-					console.log(err);
 					deferred.reject({
 						error: 'Query Error',
 						message: 'Could not execute query'
 					});
 				} else { //succesfully created
-					console.log('success');
 					deferred.resolve('Table successfully created');
 				}
 			});
