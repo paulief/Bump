@@ -1,11 +1,16 @@
 exports.up = function(pgm) {
-	console.log(process.env.DATABASE_URL);
 	pgm.createTable('users', {
 		id: {
-			type: 'serial'
+			type: 'serial',
+			primaryKey: true
 		},
 		username: {
-			type: 'varchar(30)'
+			type: 'varchar(30)',
+			notNull: true
+		},
+		password: {
+			type: 'varchar(30)', //need to change this
+			notNull: true
 		},
 		create_dtm: {
 			type: 'timestamp default now()'
