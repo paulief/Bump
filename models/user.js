@@ -1,11 +1,17 @@
-var bookshelf = require('../helpers/bookshelf');
+let bookshelf = require('../helpers/bookshelf');
 
-import { Playlist } from 'models/playlist';
+//import { Playlist } from 'models/playlist';
 
-var User = bookshelf.Model.extend({
+let User = bookshelf.Model.extend({
+	//instance properties
 	tableName: 'users',
-	playlists: function() {
-		return this.hasMany(Playlist);
+	playlists() {
+		return this.hasMany('Playlist');
+	}
+}, {
+	// class properties
+	get(id) {
+		return new this({ id: id }).fetch();
 	}
 });
 
